@@ -98,6 +98,7 @@ constructor() {
 	}
 
 	calculateTotalCost() {
+		// ------->>>>>>>> 	NEED TO FIND A WAY TO MAKE SURE THE CALCULATION DOES NOT RELOOP OVER ALREADY CALCULATED TROOP DIVISIONS <<<<<<< ---------- //
 		let cost = 0;
 		let mappedTotalCost = this.state.division[0].map(
 			function(troopGroup) {
