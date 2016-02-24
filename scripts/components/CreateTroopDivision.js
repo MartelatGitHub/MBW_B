@@ -17,8 +17,8 @@ class CreateTroopDivision extends React.Component{
 
 	render() {
 		return (
-		<div><input type="text" ref="troopName" />
-		<input type="number" ref="troopNumber"/>
+		<div><input type="text" ref="troopName" required/>
+		<input type="number" ref="troopNumber" required/>
 		<select name="select" ref="stationing">
 			<option value="garrisoned"> garrisoned</option>
 			<option value="inparty"> in-party</option>
