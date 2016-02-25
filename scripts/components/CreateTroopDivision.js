@@ -10,7 +10,8 @@ class CreateTroopDivision extends React.Component{
 		let troopStation = this.refs.stationing.value;
 		let troopKey = troopName.toUpperCase() + troopStation.toUpperCase();
 		let troopDPW = this.props.troopDPW.troops[troopKey];
-		this.props.addTroop(troopName, troopDPW, troopCount, troopStation, troopKey);
+		let loopID = "NOT-LOOPED";
+		this.props.addTroop(troopName, troopDPW, troopCount, troopStation, troopKey, loopID);
 		
 		
 	}

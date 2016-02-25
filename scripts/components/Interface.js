@@ -38,8 +38,8 @@ constructor() {
 		})
 	}
 
-	addTroop(troopName, troopDPW, troopCount, troopStation, troopId) {
-		var troopTypeGrouping = [troopName, troopDPW.costPW, troopCount, troopStation, troopId];
+	addTroop(troopName, troopDPW, troopCount, troopStation, troopId, loopID) {
+		var troopTypeGrouping = [troopName, troopDPW.costPW, troopCount, troopStation, troopId, loopID];
 		var checkForDuplicateTroopKeys = this.state.troopkeys.filter(
 			function(x) {
 				return x === troopId;
@@ -63,8 +63,8 @@ constructor() {
 
 
 	createDivision(){
-		// ------>>>>>> USE ANOTHER VARIABLE (WITH MAP???) TO DELINEATE STATE TO BE USED BY WEEKLY BUDGET <<<<<------- // 
-
+		// ------>>>>>> USE ANOTHER VARIABLE (WITH MAP???) TO DELINEATE STATE TO BE USED BY WEEKLY BUDGET [RESOLVED]<<<<<------- // 
+		// ------>>>>>> RESOLUTION: SEPARATED THE TASK OF DETERMINING TOTAL COST TO A CLICKABLE BUTTON AND CREATED A METHOD TO HANDLE IT<<<<<<--------- //
 
 		if (this.state.division[0] !== undefined)
 		{
@@ -99,9 +99,14 @@ constructor() {
 
 	calculateTotalCost() {
 		// ------->>>>>>>> 	NEED TO FIND A WAY TO MAKE SURE THE CALCULATION DOES NOT RELOOP OVER ALREADY CALCULATED TROOP DIVISIONS <<<<<<< ---------- //
+		// ------->>>>>>>>  ADDED A "NOT-LOOPED" PROPERTY TO NEW TROOPS: WOULD ALLOW IDENTIFICATION AND MUTATION IN FUTURE WORKS ONLY FOR TWO CASES. NOT SURE WHY<<<<<<<-------
+
+		let countOfMappedTroops = [];
 		let cost = 0;
 		let mappedTotalCost = this.state.division[0].map(
 			function(troopGroup) {
+				console.log(troopGroup +  " is a troop from mappedTotalCost");
+				if(troopGroup[5] === "NOT-LOOPED") {
 				if (troopGroup[3] === "garrisoned") {
 					var stationing = 2; 
 				}
@@ -110,12 +115,33 @@ constructor() {
 				}
 				var divisionCost = troopGroup[1] * troopGroup[2] / stationing;
 				cost+=divisionCost;
-
+				}
+				else {
+					return;
+				}
 			}
 		)
 		this.setState({
 			totalCost: this.state.totalCost+cost
 		})
+		// COACD = closing off already counted divisions
+		let This = this;
+		let count = 0;
+		let COACD = this.state.division[0].map(
+			function(troopGroup) {
+				if (troopGroup[5] === "NOT-LOOPED") {
+					This.state.division[0][count].pop();
+					This.state.division[0][count].push("LOOPED");
+					
+
+				}
+				else {
+					return;
+				}
+				count+=1;
+			}
+		)
+
 
 	}
 	
