@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Interface from './components/Interface.js'
-
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
 // var Catalyst = require('react-catalyst');
 
 

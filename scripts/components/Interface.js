@@ -5,7 +5,7 @@ import autobind from 'autobind-decorator';
 import CreateTroopDivision from './CreateTroopDivision';
 import YourArmy from './YourArmy';
 import WeeklyBudget from './WeeklyBudget';
-import injectTapEventPlugin from 'react-tap-event-plugin';
+
 
 
 
@@ -15,7 +15,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 // Can go away when react 1.0 release
 // Check this repo:
 // https://github.com/zilverline/react-tap-event-plugin
-injectTapEventPlugin();
+
 
 
 @autobind
