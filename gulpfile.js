@@ -21,27 +21,27 @@ var historyApiFallback = require('connect-history-api-fallback')
   Styles Task
 */
 
-gulp.task('styles',function() {
-  // move over fonts
+// gulp.task('styles',function() {
+//   // move over fonts
 
-  gulp.src('css/fonts/**.*')
-    .pipe(gulp.dest('build/css/fonts'))
+//   gulp.src('css/fonts/**.*')
+//     .pipe(gulp.dest('build/css/fonts'))
 
-  // Compiles CSS
-  gulp.src('css/style.styl')
-    .pipe(stylus())
-    .pipe(autoprefixer())
-    .pipe(gulp.dest('./build/css/'))
-    .pipe(reload({stream:true}))
-});
+//   // Compiles CSS
+//   gulp.src('css/style.styl')
+//     .pipe(stylus())
+//     .pipe(autoprefixer())
+//     .pipe(gulp.dest('./build/css/'))
+//     .pipe(reload({stream:true}))
+// });
 
 /*
   Images
 */
-gulp.task('images',function(){
-  gulp.src('css/images/**')
-    .pipe(gulp.dest('./build/css/images'))
-});
+// gulp.task('images',function(){
+//   gulp.src('css/images/**')
+//     .pipe(gulp.dest('./build/css/images'))
+// });
 
 /*
   Browser Sync
@@ -103,7 +103,7 @@ gulp.task('scripts', function() {
 });
 
 // run 'scripts' task first, then watch for future changes
-gulp.task('default', ['images','styles','scripts','browser-sync'], function() {
-  gulp.watch('css/**/*', ['styles']); // gulp watch for stylus changes
+gulp.task('default', ['images','scripts','browser-sync'], function() {
+  // gulp.watch('css/**/*', ['styles']); // gulp watch for stylus changes
   return buildScript('main.js', true); // browserify watch for JS changes
 });

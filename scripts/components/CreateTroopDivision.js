@@ -1,31 +1,30 @@
 import React from 'react';
 import autobind from 'autobind-decorator';
+import Paper from 'material-ui/lib/paper';
+import AppBar from 'material-ui/lib/app-bar';
+import TextField from 'material-ui/lib/text-field';
+import DropDownMenu from 'material-ui/lib/DropDownMenu';
+import MenuItem from 'material-ui/lib/menus/menu-item';
+
+const styles = {
+	
+}
+
 
 @autobind
 class CreateTroopDivision extends React.Component{
-	onButtonClick() {
-
-		let troopName = this.refs.troopName.value;
-		let troopCount= this.refs.troopNumber.value;
-		let troopStation = this.refs.stationing.value;
-		let troopKey = troopName.toUpperCase() + troopStation.toUpperCase();
-		let troopDPW = this.props.troopDPW.troops[troopKey];
-		let loopID = "NOT-LOOPED";
-		this.props.addTroop(troopName, troopDPW, troopCount, troopStation, troopKey, loopID);
-		
-		
+	constructor(props) {
+		super(props);
+		this.state = {
+			
+		}
 	}
-
+	
 	render() {
 		return (
-		<div><input type="text" ref="troopName" required/>
-		<input type="number" ref="troopNumber" required/>
-		<select name="select" ref="stationing">
-			<option value="garrisoned"> garrisoned</option>
-			<option value="inparty"> in-party</option>
-		</select>
-		 <button type="submit" onClick={this.onButtonClick}> Add </button>
-		 </div>
+			<div>
+				
+			</div>
 		)
 	}
 }

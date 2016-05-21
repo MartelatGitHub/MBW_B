@@ -1,53 +1,52 @@
 module.exports = {
 	troops: {
-		HUSCARLINPARTY: {
-			costPW: 26,
-			type: 'INFANTRY'
+		NORD : {
+			HUSCARL: {
+				COST: {
+					GARRISONED: 13,
+					INPARTY: 26,
+				},
+			},
 		},
-		MAMLUKEINPARTY: {
-			costPW: 48,
-			type: 'CAVALRY'
+		SWADIA: {
+			KNIGHT: {
+				COST: {
+					GARRISONED: 39,
+					INPARTY: 58,
+				},
+			},
 		},
-		SHARPSHOOTERINPARTY: {
-			costPW: 23,
-			type: 'RANGED'
+		SARRANID: {
+			MAMLUKE: {
+				COST: {
+					GARRISONED: 24,
+					INPARTY: 48,
+				},
+			},
 		},
-		KNIGHTINPARTY: {
-			costPW: 58,
-			type: 'CAVALRY'
+		RHODOK: {
+			SHARPSHOOTERS: {
+				COST: {
+					GARRISONED: 11.5,
+					INPARTY: 23,
+				},
+			},
 		},
-		LANCERINPARTY: {
-			costPW: 38,
-			type: 'CAVALRY'
+		KHERGHITKHANATE: {
+			LANCER: {
+				COST: {
+					GARRISONED: 19,
+					INPARTY: 38,
+				},
+			},
 		},
-		GUARDINPARTY: {
-			costPW: 20,
-			type: 'INFANTRY'
+		VAEGIR: {
+			GUARD: {
+				COST: {
+					GARRISONED: 10,
+					INPARTY: 20,
+				},
+			},
 		},
-			HUSCARLGARRISONED: {
-			costPW: 26,
-			type: 'INFANTRY'
-		},
-		MAMLUKEGARRISONED: {
-			costPW: 48,
-			type: 'CAVALRY'
-		},
-		SHARPSHOOTERGARRISONED: {
-			costPW: 23,
-			type: 'RANGED'
-		},
-		KNIGHTGARRISONED: {
-			costPW: 58,
-			type: 'CAVALRY'
-		},
-		LANCERGARRISONED: {
-			costPW: 38,
-			type: 'CAVALRY'
-		},
-		GUARDGARRISONED: {
-			costPW: 20,
-			type: 'INFANTRY'
-		}
-
-	}
+	},
 };

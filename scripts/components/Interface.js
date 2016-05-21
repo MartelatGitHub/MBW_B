@@ -6,16 +6,21 @@ import CreateTroopDivision from './CreateTroopDivision';
 import YourArmy from './YourArmy';
 import WeeklyBudget from './WeeklyBudget';
 
+// ------->>>>>>> IMPORTING COMPONENTS FROM MATERIAL-UI <<<<<<<-------
+import Tabs from 'material-ui/lib/tabs/tabs';
+import Tab from 'material-ui/lib/tabs/tab';
+import Slider from 'material-ui/lib/slider';
+import Popover from 'material-ui/lib/popover/popover';
+import RaisedButton from 'material-ui/lib/raised-button';
+import Paper from 'material-ui/lib/paper';
+import Dialog from 'material-ui/lib/dialog';
 
+const troopCost = require('../scripts/troopDPW.js');
 
+const styles = {
 
-// REMEMBER TO USE THE FOLLOWING PATH TO ACCESS MATERIAL-UI COMPONENTS --->  'material-ui/lib/raised-button'
-
-// Needed for onTouchTap
-// Can go away when react 1.0 release
-// Check this repo:
-// https://github.com/zilverline/react-tap-event-plugin
-
+	
+}
 
 
 @autobind
@@ -23,138 +28,21 @@ class Interface extends React.Component {
 constructor() {
 	super();
 	this.state = {
-			troops: [],
-			troopkeys: [],
-			count : [],
-			division: [],
-			troopDPW: [],
-			totalCost: 0
+			
 		}
+		console.log(troopCost);
 	}
 
-	componentDidMount() {
-		this.setState({ 
-			troopDPW : require('../troopDPW.js')
-		})
-	}
-
-	addTroop(troopName, troopDPW, troopCount, troopStation, troopId, loopID) {
-		var troopTypeGrouping = [troopName, troopDPW.costPW, troopCount, troopStation, troopId, loopID];
-		var checkForDuplicateTroopKeys = this.state.troopkeys.filter(
-			function(x) {
-				return x === troopId;
-			}
-		)
-		if(checkForDuplicateTroopKeys.length > 0) {alert("You may not add more than one troop division with the same name and garrison positioning. Please Try Again"); return;}
-		this.state.troops[this.state.troops.length] = troopTypeGrouping;
-		this.createTroopDivision();
-		this.state.troopkeys[this.state.troopkeys.length] = troopId;
-		this.state.count[troopId] = troopCount
-
-	}
-
-	createTroopDivision() {
-
-		this.setState({
-			division: [this.state.troops]
-		});
-
-	}
-
-
-	createDivision(){
-		// ------>>>>>> USE ANOTHER VARIABLE (WITH MAP???) TO DELINEATE STATE TO BE USED BY WEEKLY BUDGET [RESOLVED]<<<<<------- // 
-		// ------>>>>>> RESOLUTION: SEPARATED THE TASK OF DETERMINING TOTAL COST TO A CLICKABLE BUTTON AND CREATED A METHOD TO HANDLE IT<<<<<<--------- //
-
-		if (this.state.division[0] !== undefined)
-		{
-
-
-			let division = this.state.division[0].map(
-			function(troopGroup) {
-				if (troopGroup[3] === "garrisoned") {
-					var stationing = 2;
-				}
-				else {
-					var stationing = 1;
-				}
-				 
-				var divisionCost = troopGroup[1] * troopGroup[2] / stationing;
-				return (
-					<div key={troopGroup[4]}>
-						<hr></hr>
-						<li>{troopGroup[0]}</li>
-						<li>Denars per Week: {divisionCost}</li>
-						<li>Number of {troopGroup[0]}s: {troopGroup[2]}</li>
-						<li>{troopGroup[3]}</li>
-						<hr></hr>
-					</div>
-				)
-			}
-		);
-		return division; 
-	   }
-
-	}
-
-	calculateTotalCost() {
-		// ------->>>>>>>> 	NEED TO FIND A WAY TO MAKE SURE THE CALCULATION DOES NOT RELOOP OVER ALREADY CALCULATED TROOP DIVISIONS <<<<<<< ---------- //
-		// ------->>>>>>>>  ADDED A "NOT-LOOPED" PROPERTY TO NEW TROOPS: WOULD ALLOW IDENTIFICATION AND MUTATION IN FUTURE WORKS ONLY FOR TWO CASES. NOT SURE WHY<<<<<<<-------
-
-		let countOfMappedTroops = [];
-		let cost = 0;
-		let mappedTotalCost = this.state.division[0].map(
-			function(troopGroup) {
-				console.log(troopGroup +  " is a troop from mappedTotalCost");
-				if(troopGroup[5] === "NOT-LOOPED") {
-				if (troopGroup[3] === "garrisoned") {
-					var stationing = 2; 
-				}
-				else {
-					var stationing = 1;
-				}
-				var divisionCost = troopGroup[1] * troopGroup[2] / stationing;
-				cost+=divisionCost;
-				}
-				else {
-					return;
-				}
-			}
-		)
-		this.setState({
-			totalCost: this.state.totalCost+cost
-		})
-		// COACD = closing off already counted divisions
-		let This = this;
-		let count = 0;
-		let COACD = this.state.division[0].map(
-			function(troopGroup) {
-				if (troopGroup[5] === "NOT-LOOPED") {
-					This.state.division[0][count].pop();
-					This.state.division[0][count].push("LOOPED");
-					
-
-				}
-				else {
-					return;
-				}
-				count+=1;
-			}
-		)
-
-
-	}
 	
+
+
 	render() {
-		
 		return (
-			<div>
-				<CreateTroopDivision troopDPW = {this.state.troopDPW}division={this.state.division} createTroopDivision = {this.createTroopDivision} addTroop={this.addTroop} troops = {this.state.troops} count = {this.state.count}/>
+			<div style={}>
 
-				<YourArmy createDivision = {this.createDivision} division = {this.state.division} createTroopDivision = {this.createTroopDivision} count = {this.state.count} troops={this.state.troops}/>
-
-				<WeeklyBudget calculateTotalCost={this.calculateTotalCost} division = {this.state.division} totalCost = {this.state.totalCost}/>
-				
+				{/*<CreateTroopDivision />
+				<YourArmy />
+				<WeeklyBudget />*/}
 			</div>
 		)
 	}

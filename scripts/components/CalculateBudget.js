@@ -8,11 +8,9 @@ class CalculateBudget extends React.Component{
 
 	return (
 		<div></div>
-	)
+		)
+
 	}
-
-
-
 
 }
 
